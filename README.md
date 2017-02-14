@@ -2,15 +2,4 @@
 
 PINEAU
 
-##y-hhuijikçk
-
-
-tghbjik *ujuk* èèun  
-
-- client
-- vserveur
-- conclusion
-
-
-
-
+- 1 
