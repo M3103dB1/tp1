@@ -30,7 +30,6 @@ while 1:
 ```
 On peut voir que quand on envoie un texte dans le client, le serveur nous renvoie exactement le même texte mais en majuscule.
 - 2
-En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc -u localhost 12000 ```
-Et pour le programme pour le serveur par : ``` nc -u -l localhost 12000 `
+En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc -u localhost 12000 ``` et pour le programme pour le serveur par : ``` nc -u -l localhost 12000 `
 - 3 
 - 4 
