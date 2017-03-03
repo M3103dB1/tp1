@@ -28,7 +28,7 @@ while 1:
       modifiedMessage = message.upper()
       serverSocket.sendto(modifiedMessage, clientAddress)
 ```
-On peut voir que quand on envoie un texte dasn le client, le serveur nous renvoie exactement le même texte mais en majuscule.
+On peut voir que quand on envoie un texte dans le client, le serveur nous renvoie exactement le même texte mais en majuscule.
 - 2
 - 3 
 - 4 
