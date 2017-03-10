@@ -73,3 +73,24 @@ Dans le terminal du client, on rentre un texte et le serveur nous renvoie ce tex
 En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc localhost 12000 ``` et le programme pour le serveur par : ``` nc -l -p 12000 ```.
 Le 'nc' signifie que l'on est en Netcat, le 'localhost' pour le nom du serveur et '12000' pour le numéro du port et le '-l' signifie listen pour le serveur.
 Cette commande permet de configurer un client et un serveur pour qu'il communique, elle ne fais rien d'autre.
+
+- 5 
+
+###Code pour le filtre : 
+```python
+from socket import *
+serverPortIN = 12000
+serverPortOUT = 13000
+serverName = 'localhost'
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((serverName,serverPort))
+serverSocket = socket(AF_INET,SOCK_STREAM)
+serverSocket.bind(('',serverPort))
+serverSocket.listen(1)
+while 1:
+	connectionSocket, addr = serverSocket.accept()
+	sentence = connectionSocket.recv(1024)
+	capitalizedSentence = sentence.upper()
+	connectionSocket.send(capitalizedSentence)
+	connectionSocket.close()
+```
