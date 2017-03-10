@@ -30,6 +30,7 @@ while 1:
 ```
 On peut voir que quand on envoie un texte dans le client, le serveur nous renvoie exactement le même texte mais en majuscule.
 - 2
+
 En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc -u localhost 12000 ``` et le programme pour le serveur par : ``` nc -u -l -p 12000 ```.
 Le 'nc' signifie que l'on est en Netcat, le '-u' en UDP, le 'localhost' pour le nom du serveur et '12000' pour le numéro du port et le '-l' signifie listen pour le serveur.
 Cette commande permet de configurer un client et un serveur pour qu'il communique, elle ne fais rien d'autre.
