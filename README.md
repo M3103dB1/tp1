@@ -36,6 +36,7 @@ Le 'nc' signifie que l'on est en Netcat, le '-u' en UDP, le 'localhost' pour le 
 Cette commande permet de configurer un client et un serveur pour qu'il communique, elle ne fais rien d'autre.
 
 - 3 
+
 ###Code pour le client TCP : 
 ```python
 from socket import *
