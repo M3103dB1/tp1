@@ -4,7 +4,7 @@ PINEAU
 
 - 1 
 
-###Code pour le client : 
+###Code pour le client UDP : 
 ```python
 from socket import *
  serverName = ‘hostname’ 
@@ -16,7 +16,7 @@ from socket import *
  print modifiedMessage
 clientSocket.close()
 ```
-###Code pour le serveur : 
+###Code pour le serveur UDP : 
 ```python
 from socket import *
 serverPort = 12000
@@ -33,5 +33,36 @@ On peut voir que quand on envoie un texte dans le client, le serveur nous renvoi
 En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc -u localhost 12000 ``` et le programme pour le serveur par : ``` nc -u -l -p 12000 ```.
 Le 'nc' signifie que l'on est en Netcat, le '-u' en UDP, le 'localhost' pour le nom du serveur et '12000' pour le numéro du port et le '-l' signifie listen pour le serveur.
 Cette commande permet de configurer un client et un serveur pour qu'il communique, elle ne fais rien d'autre.
+
 - 3 
+###Code pour le client TCP : 
+```python
+from socket import *
+serverName = 'localhost'
+serverPort = 12000
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((serverName,serverPort))
+sentence = raw_input('Input lowercase sentence:')
+clientSocket.send(sentence)
+modifiedSentence = clientSocket.recv(1024)
+print 'From Server:', modifiedSentence
+clientSocket.close()
+```
+###Code pour le serveur TCP : 
+```python
+from socket import *
+serverPort = 12000
+serverSocket = socket(AF_INET,SOCK_STREAM)
+serverSocket.bind(('',serverPort))
+serverSocket.listen(1)
+print 'The server is ready to receive'
+while 1:
+	connectionSocket, addr = serverSocket.accept()
+	sentence = connectionSocket.recv(1024)
+	capitalizedSentence = sentence.upper()
+	connectionSocket.send(capitalizedSentence)
+	connectionSocket.close()
+ ```
+
+
 - 4 
