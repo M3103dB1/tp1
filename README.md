@@ -29,6 +29,7 @@ while 1:
       serverSocket.sendto(modifiedMessage, clientAddress)
 ```
 On peut voir que quand on envoie un texte dans le client, le serveur nous renvoie exactement le même texte mais en majuscule.
+
 - 2
 
 En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc -u localhost 12000 ``` et le programme pour le serveur par : ``` nc -u -l -p 12000 ```.
@@ -65,6 +66,10 @@ while 1:
 	connectionSocket.send(capitalizedSentence)
 	connectionSocket.close()
  ```
-
+Dans le terminal du client, on rentre un texte et le serveur nous renvoie ce texte en majuscule.
 
 - 4 
+
+En utilisant la commande netcat, on remplace le programme pour le client par : ``` nc localhost 12000 ``` et le programme pour le serveur par : ``` nc -l -p 12000 ```.
+Le 'nc' signifie que l'on est en Netcat, le 'localhost' pour le nom du serveur et '12000' pour le numéro du port et le '-l' signifie listen pour le serveur.
+Cette commande permet de configurer un client et un serveur pour qu'il communique, elle ne fais rien d'autre.
