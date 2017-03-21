@@ -79,25 +79,33 @@ Cette commande permet de configurer un client et un serveur pour qu'il communiqu
 ###Code pour le filtre : 
 ```python
 from socket import *
-serverPortIn = 12000
-serverPortOut = 13000
+
+serverPortIn = 12001
+serverPortOut = 13001
+
 serverName = "localhost"
 
-clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((serverName,serverPortOut))
 
 serverSocket = socket(AF_INET,SOCK_STREAM)
 serverSocket.bind(('',serverPortIn))
 serverSocket.listen(1)
 
+serverSocket2 = socket(AF_INET,SOCK_STREAM)
+serverSocket2.bind(('',serverPortOut))
+serverSocket2.listen(1)
+
 while 1:
 	connectionSocket, addr = serverSocket.accept()
 	sentence = connectionSocket.recv(1024)
 	modifiedSentence = sentence.upper()
-	clientSocket.send(modifiedSentence)
+	connectionSocket.send(modifiedSentence)
+	print modifiedSentence
 	connectionSocket.close()
-
-clientSocket.close()
+# client 2
+	while 1:
+		connectionSocket, addr = serverSocket2.accept()
+		connectionSocket.send(modifiedSentence)
+		connectionSocket.close()
 ```
 Mais nous avons exactement le même code pour le serveur sauf que l'on change son numéro de port (13000).
 
