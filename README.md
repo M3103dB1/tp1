@@ -79,18 +79,55 @@ Cette commande permet de configurer un client et un serveur pour qu'il communiqu
 ###Code pour le filtre : 
 ```python
 from socket import *
-serverPortIN = 12000
-serverPortOUT = 13000
-serverName = 'localhost'
+serverPortIn = 12000
+serverPortOut = 13000
+serverName = "localhost"
+
 clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((serverName,serverPort))
+clientSocket.connect((serverName,serverPortOut))
+
 serverSocket = socket(AF_INET,SOCK_STREAM)
-serverSocket.bind(('',serverPort))
+serverSocket.bind(('',serverPortIn))
 serverSocket.listen(1)
+
 while 1:
 	connectionSocket, addr = serverSocket.accept()
 	sentence = connectionSocket.recv(1024)
-	capitalizedSentence = sentence.upper()
-	connectionSocket.send(capitalizedSentence)
+	modifiedSentence = sentence.upper()
+	clientSocket.send(modifiedSentence)
 	connectionSocket.close()
+
+clientSocket.close()
+```
+Mais nous avons exactement le même code pour le serveur sauf que l'on change son numéro de port (13000).
+
+###Code pour le serveur : 
+```python
+from socket import *
+serverPort = 13000
+serverSocket = socket(AF_INET,SOCK_STREAM)
+serverSocket.bind(('',serverPort))
+serverSocket.listen(1)
+print 'The server is ready to receive'
+while 1:
+	connectionSocket, addr = serverSocket.accept()
+	sentence = connectionSocket.recv(1024)
+	connectionSocket.send(sentence)
+	print sentence
+	connectionSocket.close()
+```
+Enfin nous avons le code pour le client qui reste exactement le même : 
+
+###Code pour le client : 
+```python
+from socket import *
+serverName = "localhost"
+serverPort = 12000
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((serverName,serverPort))
+sentence = raw_input('Input lowercase sentence:')
+clientSocket.send(sentence)
+modifiedSentence = clientSocket.recv(1024)
+print 'From Server:', modifiedSentence
+clientSocket.close()
 ```
