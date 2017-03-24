@@ -109,24 +109,7 @@ while 1:
 	connectionSocket.send(modifiedSentence)
 	connectionSocket.close()
 ```
-Mais nous avons exactement le même code pour le serveur sauf que l'on change son numéro de port (13000).
-
-###Code pour le serveur : 
-```python
-from socket import *
-serverPort = 13000
-serverSocket = socket(AF_INET,SOCK_STREAM)
-serverSocket.bind(('',serverPort))
-serverSocket.listen(1)
-print 'The server is ready to receive'
-while 1:
-	connectionSocket, addr = serverSocket.accept()
-	sentence = connectionSocket.recv(1024)
-	connectionSocket.send(sentence)
-	print sentence
-	connectionSocket.close()
-```
-Enfin nous avons le code pour le client qui reste exactement le même : 
+Enfin nous avons le code pour le client1 qui reste exactement le même : 
 
 ###Code pour le client : 
 ```python
@@ -141,3 +124,4 @@ modifiedSentence = clientSocket.recv(1024)
 print 'From Server:', modifiedSentence
 clientSocket.close()
 ```
+Puis nous ajoutons un deuxième client sur le port 13000 qui va recevoir le message en majuscule grâce à : ``` nc localhost 13000 ``` .
