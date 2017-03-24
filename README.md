@@ -94,6 +94,7 @@ serverSocket2 = socket(AF_INET,SOCK_STREAM)
 serverSocket2.bind(('',serverPortOut))
 serverSocket2.listen(1)
 
+#client 1 
 while 1:
 	connectionSocket, addr = serverSocket.accept()
 	sentence = connectionSocket.recv(1024)
@@ -101,11 +102,12 @@ while 1:
 	connectionSocket.send(modifiedSentence)
 	print modifiedSentence
 	connectionSocket.close()
+	
 # client 2
-	while 1:
-		connectionSocket, addr = serverSocket2.accept()
-		connectionSocket.send(modifiedSentence)
-		connectionSocket.close()
+while 1:
+	connectionSocket, addr = serverSocket2.accept()
+	connectionSocket.send(modifiedSentence)
+	connectionSocket.close()
 ```
 Mais nous avons exactement le même code pour le serveur sauf que l'on change son numéro de port (13000).
 
