@@ -80,8 +80,8 @@ Cette commande permet de configurer un client et un serveur pour qu'il communiqu
 ```python
 from socket import *
 
-serverPortIn = 12001
-serverPortOut = 13001
+serverPortIn = 12000
+serverPortOut = 13000
 
 serverName = "localhost"
 
